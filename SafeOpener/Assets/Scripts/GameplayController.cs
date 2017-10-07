@@ -1,0 +1,209 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
+public class GameplayController : MonoBehaviour {
+	public Font[] fonts;
+	public GameObject safe;
+	public Text pointsText;
+
+	// Time management
+	public float timer = 0;
+	public float timerRounded;
+	public Text timerText;
+
+	// Buttons
+	public bool rightButtonDown, leftButtonDown;
+
+	// Rotation speeds
+	public float speed = 0.35f;
+	public float currentSpeed = 0.35f;
+	public float speedStep = 0.25f;
+
+	// Code volumes
+	public float[] soundVals = new float[180];
+
+	// Code management
+	public int currentSafeState, lastSafeState;
+	public int generatedCode;
+	public int[] codeCombination;
+	public int[] userCombination;
+	public int currentCodePosition;
+	public Text urCode;
+	public Text buttonText;
+
+	// hehexd
+	public float points;
+	public float startingTimer;
+	public float maxScore;
+
+	// Ending variables
+	public GameObject endingScreen;
+	public bool gameEnded;
+	public Text endingText;
+	public Text endingHighScore;
+
+	// Level variables
+	public int levelName;
+	public float difficulty;
+	public float lowestVol, highestVol;
+	public int codeCombinationCount;
+	public float maxTime;
+
+
+	void Awake() {
+		Destroy(GameObject.Find ("Audio Source"));
+		endingScreen = GameObject.Find ("EndingInfo");
+		endingScreen.SetActive (false);
+		gameEnded = false;
+		startingTimer = 4f;
+		levelName = int.Parse(SceneManager.GetActiveScene ().name);
+		difficulty = GameController.levels [levelName].Difficulty;
+		lowestVol = GameController.levels [levelName].VolMin;
+		highestVol = GameController.levels [levelName].VolMax;
+		codeCombinationCount = GameController.levels [levelName].CodeCombinationCount;
+		//maxTime = GameController.levels [levelName].MaxTime;
+		maxScore = (difficulty/10f) * 10000f * codeCombinationCount;
+		maxTime = 10;
+
+
+
+		points = 0;
+		timerRounded = maxTime;
+		currentCodePosition = 0;
+		codeCombination = new int[codeCombinationCount];
+		userCombination = new int[codeCombinationCount];
+		for (int i = 0; i < codeCombinationCount; i++) {
+			codeCombination [i] = Random.Range (1, 180);
+			userCombination [i] = 0;
+		}
+		rightButtonDown = false;
+		leftButtonDown = false;
+		urCode.text = "[" + codeCombinationCount +"] CODE: ";
+	}
+	void Start () {
+		GenerateSafe ();
+	}
+	void Update () {
+		if (startingTimer > 0) {
+			startingTimer = startingTimer - Time.fixedDeltaTime;
+			timerText.text = Mathf.Round (startingTimer).ToString ();
+		} else if(gameEnded == false){
+			timer = timer - Time.fixedDeltaTime;
+			timerRounded = Mathf.Round (timer * 10f) / 10f;
+			if (timerRounded < 0) {
+				EndingScreen ("lose");
+			}
+			if (timerRounded - Mathf.RoundToInt (timerRounded) != 0) {
+				timerText.text = timerRounded.ToString ();
+			} else {
+				timerText.text = timerRounded.ToString () + ".0";
+			}
+			if (leftButtonDown == true) {
+				safe.transform.Rotate (new Vector3 (0, 0, currentSpeed));
+			}
+			if (rightButtonDown == true) {
+				safe.transform.Rotate (new Vector3 (0, 0, -currentSpeed));
+			}
+			if (rightButtonDown || leftButtonDown && currentSpeed < 1) {
+				currentSpeed += speedStep * Time.fixedDeltaTime;
+			}
+			if (!rightButtonDown && !leftButtonDown) {
+				currentSpeed = speed;
+			}
+			if (Input.GetKeyDown (KeyCode.F1)) {
+				SceneManager.LoadScene ("testingLvl");
+			}
+			if (Input.GetKeyDown (KeyCode.Space)) {
+				GenerateSafe ();
+			}
+			if (Input.GetKeyDown (KeyCode.Return)) {
+				CheckCode ();
+			}
+			currentSafeState = Mathf.RoundToInt ((safe.transform.localEulerAngles.z) / 2);
+			if (currentSafeState == 180) {
+				currentSafeState = 179;
+			}
+			if (lastSafeState != currentSafeState && currentSafeState != 180) {
+				this.GetComponent<AudioSource> ().volume = soundVals [currentSafeState] * 0.7f;
+				this.GetComponent<AudioSource> ().Play ();
+				Debug.Log (currentSafeState + " was played." + " with " + soundVals [currentSafeState] + "volume");
+				lastSafeState = currentSafeState;
+				if (buttonText.font != fonts [1]) {
+					buttonText.font = fonts [1];
+				}
+				buttonText.text = (currentSafeState + 1).ToString ();
+			}
+		}
+	}
+	void EndingScreen(string str) {
+		gameEnded = true;
+		endingScreen.SetActive (true);
+		if (str == "win") {
+			endingText.text = "POINTS: " + points.ToString ();
+			float percents = (points * 100f) / maxScore;
+			endingHighScore.text = "HIGH SCORE: " + percents;
+		} else {
+			endingText.text = "YOU ARE OUT OF TIME!";
+		}
+	}
+	void GenerateSoundVals(int code) {
+		float step = (highestVol - lowestVol) / 90;
+		for (int i = 0; i < soundVals.Length; i++) {
+			float dist = Mathf.Abs(code - i - 1);
+			if (dist == 0) {
+				soundVals [i] = 0;
+			} else if (dist <= 90) {
+				soundVals [i] = lowestVol + (dist * step);
+			} else {
+				soundVals [i] = highestVol - ((dist - 90) * step);
+			}
+
+			Debug.Log (i+1 + " == " + soundVals[i] + " " + dist);
+		}
+	}
+	void GenerateSafe() {
+		timer = maxTime;
+		buttonText.text = "OK";
+		GenerateSoundVals (codeCombination[currentCodePosition]);
+		lastSafeState = Mathf.RoundToInt ((safe.transform.localEulerAngles.z) / 2);
+	}
+	public void CheckCode() {
+		if (currentCodePosition < codeCombinationCount) {
+			if (buttonText.font != fonts [0]) {
+				buttonText.font = fonts [0];
+			}
+			if (currentSafeState + 1 == codeCombination [currentCodePosition]) {
+				userCombination [currentCodePosition++] = currentSafeState + 1;
+				urCode.text += (currentSafeState + 1).ToString () + " ";
+				points += (difficulty/10f) * ((100f * timerRounded / maxTime) * 100f);
+				pointsText.text = "POINTS: " + points.ToString ();
+				if (currentCodePosition == codeCombinationCount) {
+					EndingScreen ("win");
+				} else {
+					buttonText.text = "GOOD!";
+					Debug.Log ("GOOD!!");
+					Invoke ("GenerateSafe", 0.5f);
+				}
+			} else {
+				buttonText.text = "WRONG!";
+				Debug.Log ("WRONG!!");
+				timer -= difficulty;
+			}
+		}
+	}
+	public void SeButtonState(string str) {
+		if (str == "reset") {
+			leftButtonDown = false;
+			rightButtonDown = false;
+		}
+		if (str == "left") {
+			leftButtonDown = true;
+		} 
+		if (str == "right") {
+			rightButtonDown = true;
+		}
+	}
+}

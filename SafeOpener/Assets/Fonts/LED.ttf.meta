@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: e9a8ccc0c625f5544a4570ef6985d74b
+timeCreated: 1507196040
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: LED
+  fontNames:
+  - LED
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
