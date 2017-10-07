@@ -67,7 +67,6 @@ public class GameplayController : MonoBehaviour {
 		codeCombinationCount = GameController.levels [levelName].CodeCombinationCount;
 		maxTime = GameController.levels [levelName].MaxTime;
 		maxScore = (difficulty/10f) * 10000f * codeCombinationCount;
-		maxTime = 5;
 
 		points = 0;
 		timerRounded = maxTime;
