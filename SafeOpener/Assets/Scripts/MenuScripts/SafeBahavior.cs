@@ -20,4 +20,5 @@ public class SafeBahavior : MonoBehaviour {
 		if (transform.position.y < -6)
 			Destroy (gameObject);
 	}
+		
 }

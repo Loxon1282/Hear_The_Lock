@@ -7,7 +7,7 @@ public class LockSmoothRotate : MonoBehaviour {
 	bool start=false;
 	float x;
 	float y=-1;
-	public GameObject pstrykObj;
+	public GameObject pstrykObj,infoPanel;
 	public GameObject headPhones;
 	AudioSource pstryk;
 	// Use this for initialization
@@ -66,5 +66,13 @@ public class LockSmoothRotate : MonoBehaviour {
 		pstryk.Play ();
 
 
+	}
+	public void infoActive(){
+
+
+		if (infoPanel.gameObject.activeSelf)
+			infoPanel.SetActive (false);
+		else
+			infoPanel.SetActive (true);
 	}
 }
