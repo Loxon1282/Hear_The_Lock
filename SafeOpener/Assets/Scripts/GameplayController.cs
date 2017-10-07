@@ -44,6 +44,7 @@ public class GameplayController : MonoBehaviour {
 	public bool gameEnded;
 	public Text endingText;
 	public Text endingHighScore;
+	public Text starsText;
 
 	// Level variables
 	public int levelName;
@@ -64,11 +65,9 @@ public class GameplayController : MonoBehaviour {
 		lowestVol = GameController.levels [levelName].VolMin;
 		highestVol = GameController.levels [levelName].VolMax;
 		codeCombinationCount = GameController.levels [levelName].CodeCombinationCount;
-		//maxTime = GameController.levels [levelName].MaxTime;
+		maxTime = GameController.levels [levelName].MaxTime;
 		maxScore = (difficulty/10f) * 10000f * codeCombinationCount;
-		maxTime = 10;
-
-
+		maxTime = 5;
 
 		points = 0;
 		timerRounded = maxTime;
@@ -129,7 +128,7 @@ public class GameplayController : MonoBehaviour {
 			if (lastSafeState != currentSafeState && currentSafeState != 180) {
 				this.GetComponent<AudioSource> ().volume = soundVals [currentSafeState] * 0.7f;
 				this.GetComponent<AudioSource> ().Play ();
-				Debug.Log (currentSafeState + " was played." + " with " + soundVals [currentSafeState] + "volume");
+				//Debug.Log (currentSafeState + " was played." + " with " + soundVals [currentSafeState] + "volume");
 				lastSafeState = currentSafeState;
 				if (buttonText.font != fonts [1]) {
 					buttonText.font = fonts [1];
@@ -140,11 +139,32 @@ public class GameplayController : MonoBehaviour {
 	}
 	void EndingScreen(string str) {
 		gameEnded = true;
+		points = Mathf.RoundToInt (points);
 		endingScreen.SetActive (true);
+
 		if (str == "win") {
-			endingText.text = "POINTS: " + points.ToString ();
+			
+			if(GameController.highScores[levelName] < points) {
+				PlayerPrefs.SetInt ("highScore" + levelName.ToString(), (int)points);
+			}
+
 			float percents = (points * 100f) / maxScore;
-			endingHighScore.text = "HIGH SCORE: " + percents;
+			Debug.Log (percents);
+			int stars = 0;
+			if (percents > 0 && percents < 40) {
+				stars = 1;
+			} else if (percents >= 40 && percents < 80) {
+				stars = 2;
+			} else if (percents >= 80) {
+				stars = 3;
+			}
+			if(PlayerPrefs.GetInt("stars" + levelName.ToString()) < stars) {
+				PlayerPrefs.SetInt ("stars" + levelName.ToString (), stars);
+			}
+			Debug.Log (stars);
+
+			endingText.text = "POINTS: " + points.ToString ();
+			endingHighScore.text = "HIGH SCORE: " + PlayerPrefs.GetInt("highScore" + levelName);
 		} else {
 			endingText.text = "YOU ARE OUT OF TIME!";
 		}
@@ -161,7 +181,7 @@ public class GameplayController : MonoBehaviour {
 				soundVals [i] = highestVol - ((dist - 90) * step);
 			}
 
-			Debug.Log (i+1 + " == " + soundVals[i] + " " + dist);
+			//Debug.Log (i+1 + " == " + soundVals[i] + " " + dist);
 		}
 	}
 	void GenerateSafe() {
@@ -179,7 +199,7 @@ public class GameplayController : MonoBehaviour {
 				userCombination [currentCodePosition++] = currentSafeState + 1;
 				urCode.text += (currentSafeState + 1).ToString () + " ";
 				points += (difficulty/10f) * ((100f * timerRounded / maxTime) * 100f);
-				pointsText.text = "POINTS: " + points.ToString ();
+				pointsText.text = "POINTS: " + Mathf.RoundToInt(points).ToString ();
 				if (currentCodePosition == codeCombinationCount) {
 					EndingScreen ("win");
 				} else {
