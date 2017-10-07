@@ -79,7 +79,9 @@ public class GameplayController : MonoBehaviour {
 		}
 		rightButtonDown = false;
 		leftButtonDown = false;
-		urCode.text = "[" + codeCombinationCount +"] CODE: ";
+
+		//urCode.text = "[" + codeCombinationCount +"]";
+		urCode.text = "";
 	}
 	void Start () {
 		GenerateSafe ();
