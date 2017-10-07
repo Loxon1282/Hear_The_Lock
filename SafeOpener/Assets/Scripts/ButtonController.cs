@@ -18,6 +18,9 @@ public class ButtonController : MonoBehaviour {
 			SceneManager.LoadScene (str);
 		}
 	}
+	public void LoadNextScene(){
+		SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 1);
+	}
 	public void ReloadLvl() {
 		SceneManager.LoadScene (SceneManager.GetActiveScene().name);
 	}
