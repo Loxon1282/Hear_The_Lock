@@ -1585,9 +1585,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed37cfc06715af140957e1baf91adb93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panelLeft: {fileID: 0}
-  panelRight: {fileID: 0}
-  infoPanel: {fileID: 0}
 --- !u!224 &1212742029
 RectTransform:
   m_ObjectHideFlags: 0
