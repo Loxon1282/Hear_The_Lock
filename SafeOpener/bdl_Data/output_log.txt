@@ -1,0 +1,84 @@
+Initialize engine version: 5.6.1f1 (2860b30f0b54)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: AMD Radeon HD 5800 Series (ID=0x689e)
+    Vendor:   ATI
+    VRAM:     1010 MB
+    Driver:   15.201.1151.1004
+Begin MonoManager ReloadAssembly
+Platform assembly: D:\UNITY PROJECTS\Hear_The_Lock\SafeOpener\bdl_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading D:\UNITY PROJECTS\Hear_The_Lock\SafeOpener\bdl_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: D:\UNITY PROJECTS\Hear_The_Lock\SafeOpener\bdl_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading D:\UNITY PROJECTS\Hear_The_Lock\SafeOpener\bdl_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: D:\UNITY PROJECTS\Hear_The_Lock\SafeOpener\bdl_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading D:\UNITY PROJECTS\Hear_The_Lock\SafeOpener\bdl_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: D:\UNITY PROJECTS\Hear_The_Lock\SafeOpener\bdl_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading D:\UNITY PROJECTS\Hear_The_Lock\SafeOpener\bdl_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+- Completed reload, in  0.031 seconds
+Platform assembly: D:\UNITY PROJECTS\Hear_The_Lock\SafeOpener\bdl_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: D:\UNITY PROJECTS\Hear_The_Lock\SafeOpener\bdl_Data\Managed\System.dll (this message is harmless)
+desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+The referenced script on this Behaviour (Game Object 'Canvas') is missing!
+ 
+(Filename:  Line: 1743)
+
+UnloadTime: 1.789251 ms
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: 15cc -> priority: 1 
+  Thread -> id: da4 -> priority: 1 
+The referenced script on this Behaviour (Game Object 'Canvas') is missing!
+ 
+(Filename:  Line: 1743)
+
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 7.315384 ms
+Can not play a disabled audio source
+ 
+(Filename:  Line: 536)
+
+
+Unloading 23 unused Assets to reduce memory usage. Loaded Objects now: 577.
+Total: 0.791544 ms (FindLiveObjects: 0.077140 ms CreateObjectMapping: 0.034133 ms MarkObjects: 0.493221 ms  DeleteObjects: 0.186024 ms)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.261897 ms
+
+Unloading 12 unused Assets to reduce memory usage. Loaded Objects now: 389.
+Total: 0.461136 ms (FindLiveObjects: 0.058708 ms CreateObjectMapping: 0.023551 ms MarkObjects: 0.317436 ms  DeleteObjects: 0.060415 ms)
+
+52.2
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+2
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+The referenced script on this Behaviour (Game Object 'Canvas') is missing!
+ 
+(Filename:  Line: 1743)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.862540 ms
+
+Unloading 20 unused Assets to reduce memory usage. Loaded Objects now: 573.
+Total: 0.650916 ms (FindLiveObjects: 0.080895 ms CreateObjectMapping: 0.023551 ms MarkObjects: 0.468304 ms  DeleteObjects: 0.076799 ms)
+
+The referenced script on this Behaviour (Game Object 'Canvas') is missing!
+ 
+(Filename:  Line: 1743)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.998731 ms
+Can not play a disabled audio source
+ 
+(Filename:  Line: 536)
+
+
+Unloading 10 unused Assets to reduce memory usage. Loaded Objects now: 391.
+Total: 0.422907 ms (FindLiveObjects: 0.056660 ms CreateObjectMapping: 0.023210 ms MarkObjects: 0.309927 ms  DeleteObjects: 0.032085 ms)
+
