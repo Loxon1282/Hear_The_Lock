@@ -2027,10 +2027,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1677856785}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fede19ec7a62296489babeb21af3889f, type: 3}
+  m_Script: {fileID: 11500000, guid: 4bc982297053acb4fb8c08f6b648cc19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 506574598}
 --- !u!58 &1677856789
 CircleCollider2D:
   m_ObjectHideFlags: 0

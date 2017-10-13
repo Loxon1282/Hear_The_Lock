@@ -26,6 +26,8 @@ sysinfo.txt
 *.user
 *.userprefs
 *.pidb
+*.apk
+*.exe
 .DS_Store
 
 ###
