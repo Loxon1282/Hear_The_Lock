@@ -11,7 +11,7 @@ public class GameController : MonoBehaviour {
 	static public int[] highScores;
 
 	void Awake() {
-		levels.Add(new Level(1, 1, 0.1f, 0.4f,60,1));
+		levels.Add(new Level(1, 1, 0.05f, 0.7f,60,1));
 		levels.Add(new Level(2, 2, 0.1f, 0.4f,50,2));
 		levels.Add(new Level(3, 3, 0.1f, 0.4f,30,3));
 		CheckPrefs ();
