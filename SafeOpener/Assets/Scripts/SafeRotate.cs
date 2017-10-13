@@ -7,7 +7,7 @@ public class SafeRotate : MonoBehaviour {
     float currentDirection;
     int direction = 1;
     float distance;
-
+	
     private void Awake()
     {
         currentDirection = 0f;
@@ -26,7 +26,6 @@ public class SafeRotate : MonoBehaviour {
     private void OnMouseDown()
     {
         Vector2 zeroMouse = new Vector2(Input.mousePosition.x - Screen.width / 2, Input.mousePosition.y - Screen.height / 2 + 40);
-        Vector2 center = new Vector2(transform.position.x, transform.position.y);
         float angle = Vector2.SignedAngle(Vector2.up, zeroMouse);
         currentDirection = (angle < 0) ? 360-Mathf.Abs(angle) : angle;
         //Debug.Log(currentDirection);
@@ -37,7 +36,7 @@ public class SafeRotate : MonoBehaviour {
         {
             distance = Mathf.Abs(this.transform.rotation.eulerAngles.z - currentDirection);
         }
-        if(distance > 270)
+        if(distance > 200)
         {
            direction = -1;
         } else
