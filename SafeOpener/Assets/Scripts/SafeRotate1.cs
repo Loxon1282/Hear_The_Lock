@@ -4,38 +4,38 @@ using UnityEngine;
 
 public class SafeRotate1 : MonoBehaviour {
     public Camera camera;
+    Vector3 safePos = new Vector3();
+    Vector3 mousePos = new Vector3();
 
-<<<<<<< HEAD
     private void Awake()
     {
+        safePos = gameObject.transform.position;
         
     }
 
-    void OnMouseDrag(){
-=======
-	void OnMouseDrag(){
-<<<<<<< HEAD
-		float rotX = Input.GetAxis ("Mouse X") * 20 * Mathf.Deg2Rad;
-		float rotY = Input.GetAxis ("Mouse Y") * 20 * Mathf.Deg2Rad;
-		Vector2 pos = new Vector2 (transform.position.x, transform.position.y);
-		Vector2 mousePos = Input.mousePosition;
-
-=======
->>>>>>> 864fc57eebba7d37f40a0196ba38c481e2d76849
-		//float rotX = Input.GetAxis ("Mouse X") * 20 * Mathf.Deg2Rad;
-		//float rotY = Input.GetAxis ("Mouse Y") * 20 * Mathf.Deg2Rad;
-        //Debug.Log(rotX + " " + rotY);
-
-		Quaternion rotation = Quaternion.Euler (0, 0, transform.position.z - Input.mousePosition.z);
-		transform.rotation = rotation;
->>>>>>> a1aa32ca4ee11076dd447d554ed7afd62f630aae
-	}
     private void OnMouseOver()
     {
-        // GameObject.Find("Safe").transform.LookAt(Input.mousePosition);
-        //float stopnie = Mathf.Tan(Input.mousePosition.y / Input.mousePosition.x) * Mathf.Rad2Deg; ;
-        float wektor = Vector2.Angle(new Vector2(gameObject.transform.position.x, gameObject.transform.position.y), camera.ScreenToWorldPoint(Input.mousePosition));
-        gameObject.transform.rotation = Quaternion.Euler(0, 0, wektor);
-        Debug.Log(wektor);
+        mousePos = camera.ScreenToWorldPoint(Input.mousePosition);
+        mousePos = mousePos - safePos;
+        //Debug.Log("X: " + mousePos.x + " " + " Y: " + mousePos.y);
+        if (mousePos.x > 0 && mousePos.y > 0)
+        {
+            float tangent = mousePos.y / mousePos.x;
+            //Debug.Log(Mathf.Tan(and * Mathf.Deg2Rad));
+            //Debug.Log(and);
+
+        }
+        if (mousePos.x < 0 && mousePos.y > 0)
+        {
+            Debug.Log("2 ćw");
+        }
+        if (mousePos.x < 0 && mousePos.y < 0)
+        {
+            Debug.Log("3 ćw");
+        }
+        if (mousePos.x > 0 && mousePos.y < 0)
+        {
+            Debug.Log("4 ćw");
+        }
     }
 }
