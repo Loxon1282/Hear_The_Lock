@@ -151,7 +151,7 @@ public class GameplayController : MonoBehaviour {
 	}
 	void EndingScreen(string str) {
 		PlayerPrefs.SetInt ("Ads", ads);
-		if (ads % 8 == 0 && ads > 0) {
+		if (ads % 7 == 0 && ads > 0) {
 			if (Advertisement.IsReady ()) {
 				Advertisement.Show ();
 				Debug.Log ("SHOW");
