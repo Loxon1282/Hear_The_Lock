@@ -17,13 +17,13 @@ public class SafeRotate : MonoBehaviour {
     {
         if(!((currentDirection - 1f) < this.transform.eulerAngles.z && (currentDirection + 1f) > this.transform.eulerAngles.z))
         {
-            float currentDistance = Mathf.Abs(this.transform.rotation.eulerAngles.z - currentDirection) * 1.5f;
+            float currentDistance = Mathf.Abs(this.transform.rotation.eulerAngles.z - currentDirection) * 15.5f;
             this.transform.Rotate(new Vector3(0, 0, direction) * Time.deltaTime * currentDistance);
             Debug.Log(distance);
         }
     }
 
-    private void OnMouseDown()
+    private void OnMouseDrag()
     {
         Vector2 zeroMouse = new Vector2(Input.mousePosition.x - Screen.width / 2, Input.mousePosition.y - Screen.height / 2 + 40);
         float angle = Vector2.SignedAngle(Vector2.up, zeroMouse);
