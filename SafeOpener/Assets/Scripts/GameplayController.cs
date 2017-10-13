@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Advertisements;
 
 public class GameplayController : MonoBehaviour {
 	public Font[] fonts;
@@ -14,6 +15,13 @@ public class GameplayController : MonoBehaviour {
 	public float timerRounded;
 	public Text timerText;
 
+	//ADS
+	int ads ;
+//	string gameID;
+
+	#if UNITY_ANDROID
+	private string gameID = "1573893";
+	#endif
 	// Buttons
 	public bool rightButtonDown, leftButtonDown;
 
@@ -84,7 +92,10 @@ public class GameplayController : MonoBehaviour {
 		urCode.text = "";
 	}
 	void Start () {
+		gameID="1573893";
+		Advertisement.Initialize(gameID);
 		GenerateSafe ();
+		ads = PlayerPrefs.GetInt ("Ads", 0) + 1;
 	}
 	void Update () {
 		if (startingTimer > 0) {
@@ -139,6 +150,14 @@ public class GameplayController : MonoBehaviour {
 		}
 	}
 	void EndingScreen(string str) {
+		PlayerPrefs.SetInt ("Ads", ads);
+		if (ads % 8 == 0 && ads > 0) {
+			if (Advertisement.IsReady ()) {
+				Advertisement.Show ();
+				Debug.Log ("SHOW");
+			}
+		}
+		Debug.Log ("ADS: " + PlayerPrefs.GetInt ("Ads"));
 		gameEnded = true;
 		points = Mathf.RoundToInt (points);
 		endingScreen.SetActive (true);
