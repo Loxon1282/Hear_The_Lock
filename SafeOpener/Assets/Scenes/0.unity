@@ -1034,6 +1034,7 @@ Transform:
   - {fileID: 1677856787}
   - {fileID: 405594086}
   - {fileID: 420106730}
+  - {fileID: 2142301755}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1953,8 +1954,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1677856787}
   - component: {fileID: 1677856786}
-  - component: {fileID: 1677856788}
   - component: {fileID: 1677856789}
+  - component: {fileID: 1677856788}
   m_Layer: 0
   m_Name: Safe
   m_TagString: Untagged
@@ -2027,10 +2028,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1677856785}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fede19ec7a62296489babeb21af3889f, type: 3}
+  m_Script: {fileID: 11500000, guid: 4bc982297053acb4fb8c08f6b648cc19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 506574598}
 --- !u!58 &1677856789
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2040,12 +2040,12 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.0000051259995}
+  m_Offset: {x: 0, y: 0.03567775}
   serializedVersion: 2
-  m_Radius: 2.5
+  m_Radius: 1.9559776
 --- !u!1 &1749708711
 GameObject:
   m_ObjectHideFlags: 0
@@ -2956,3 +2956,47 @@ MonoBehaviour:
   m_EffectColor: {r: 0.5686275, g: 0.8627451, b: 0.3529412, a: 0.334}
   m_EffectDistance: {x: 3, y: -3}
   m_UseGraphicAlpha: 1
+--- !u!1 &2142301754
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 2142301755}
+  - component: {fileID: 2142301756}
+  m_Layer: 0
+  m_Name: Colider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2142301755
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2142301754}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -124, y: -154.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 753814737}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &2142301756
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2142301754}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1.1528249
