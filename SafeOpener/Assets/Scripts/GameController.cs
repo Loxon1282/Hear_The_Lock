@@ -12,8 +12,14 @@ public class GameController : MonoBehaviour {
 
 	void Awake() {
 		levels.Add(new Level(1, 1, 0.05f, 0.7f,60,1));
-		levels.Add(new Level(2, 2, 0.1f, 0.4f,50,2));
-		levels.Add(new Level(3, 3, 0.1f, 0.4f,30,3));
+		levels.Add(new Level(2, 2, 0.1f, 0.65f,50,2));
+		levels.Add(new Level(3, 2, 0.15f, 0.65f,45,2));
+		levels.Add(new Level(4, 2, 0.1f, 0.4f,60,3));
+		levels.Add(new Level(5, 3, 0.1f, 0.4f,50,3));
+		levels.Add(new Level(6, 3, 0.1f, 0.4f,40,4));
+		levels.Add(new Level(7, 3, 0.1f, 0.4f,30,4));
+		levels.Add(new Level(8, 4, 0.1f, 0.4f,30,4));
+		levels.Add(new Level(9, 4, 0.1f, 0.4f,30,5));
 		CheckPrefs ();
 		if (SceneManager.GetActiveScene ().name == "levelSelection") {
 			SetUpStars ();
