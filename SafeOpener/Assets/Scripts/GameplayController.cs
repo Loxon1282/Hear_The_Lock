@@ -48,7 +48,7 @@ public class GameplayController : MonoBehaviour {
 	public float maxScore;
 
 	// Ending variables
-	public GameObject endingScreen;
+	public GameObject endingScreen,restoreScreen;
 	public bool gameEnded;
 	public Text endingText;
 	public Text endingHighScore;
@@ -66,6 +66,7 @@ public class GameplayController : MonoBehaviour {
 		Destroy(GameObject.Find ("Audio Source"));
 		endingScreen = GameObject.Find ("EndingInfo");
 		endingScreen.SetActive (false);
+		restoreScreen.SetActive (false);
 		gameEnded = false;
 		startingTimer = 4f;
 		levelName = int.Parse(SceneManager.GetActiveScene ().name);
@@ -96,17 +97,31 @@ public class GameplayController : MonoBehaviour {
 		Advertisement.Initialize(gameID);
 		GenerateSafe ();
 		ads = PlayerPrefs.GetInt ("Ads", 0) + 1;
+
+
 	}
 	void Update () {
 		if (startingTimer > 0) {
 			startingTimer = startingTimer - Time.fixedDeltaTime;
 			timerText.text = Mathf.Round (startingTimer).ToString ();
 		} else if(gameEnded == false){
-			timer = timer - Time.fixedDeltaTime;
+			if(timer>0)
+				timer = timer - Time.fixedDeltaTime;
 			timerRounded = Mathf.Round (timer * 10f) / 10f;
-			if (timerRounded < 0) {
-				EndingScreen ("lose");
+
+
+			if (timerRounded <= 0) {								//PRZEGRANA
+				timer = 0;
+				if (ads % 3 == 0 && ads > 0) {
+					timerText.text = "0";
+
+					restoreScreen.SetActive (true);
+				} else {
+					EndingScreen ("lose");
+				}
 			}
+
+
 			if (timerRounded - Mathf.RoundToInt (timerRounded) != 0) {
 				timerText.text = timerRounded.ToString ();
 			} else {
@@ -149,12 +164,12 @@ public class GameplayController : MonoBehaviour {
 			}
 		}
 	}
-	void EndingScreen(string str) {
+	public void EndingScreen(string str) {
 		PlayerPrefs.SetInt ("Ads", ads);
 		if (ads % 7 == 0 && ads > 0) {
 			if (Advertisement.IsReady ()) {
 				Advertisement.Show ();
-				Debug.Log ("SHOW");
+
 			}
 		}
 		Debug.Log ("ADS: " + PlayerPrefs.GetInt ("Ads"));
@@ -186,7 +201,9 @@ public class GameplayController : MonoBehaviour {
 			endingText.text = "POINTS: " + points.ToString ();
 			endingHighScore.text = "HIGH SCORE: " + PlayerPrefs.GetInt("highScore" + levelName);
 		} else {
+			restoreScreen.SetActive (false);
 			endingText.text = "YOU ARE OUT OF TIME!";
+		
 		}
 	}
 	void GenerateSoundVals(int code) {
@@ -245,5 +262,23 @@ public class GameplayController : MonoBehaviour {
 		if (str == "right") {
 			rightButtonDown = true;
 		}
+	}
+	void HandleShowResult (ShowResult result)
+	{
+		if(result == ShowResult.Finished) {
+			timer += 20.0f;
+			restoreScreen.SetActive (false);
+			PlayerPrefs.SetInt ("Ads", PlayerPrefs.GetInt ("Ads", 0) + 1);
+			ads++;
+
+		}else if(result == ShowResult.Skipped) {
+			EndingScreen ("lose");
+
+		}else if(result == ShowResult.Failed) {
+			EndingScreen ("lose");
+		}
+	}
+	public void AdRestore(){
+		Advertisement.Show ("", new ShowOptions (){ resultCallback = HandleShowResult });
 	}
 }
