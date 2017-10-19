@@ -196,7 +196,6 @@ public class GameplayController : MonoBehaviour {
 			if(PlayerPrefs.GetInt("stars" + levelName.ToString()) < stars) {
 				PlayerPrefs.SetInt ("stars" + levelName.ToString (), stars);
 			}
-			Debug.Log (stars);
 
 			endingText.text = "POINTS: " + points.ToString ();
 			endingHighScore.text = "HIGH SCORE: " + PlayerPrefs.GetInt("highScore" + levelName);
@@ -205,7 +204,14 @@ public class GameplayController : MonoBehaviour {
 			endingText.text = "YOU ARE OUT OF TIME!";
 		
 		}
-	}
+        //Wypelnianie koncowych gwiazdek :3
+        //EMPTY: 145 220 90 74
+        //FULL: 145 220 90 255
+        for (int i = 0; i < (PlayerPrefs.GetInt("stars" + levelName) - 1); i++)
+        {
+            GameObject.Find("Stars").transform.GetChild(i).GetComponent<Image>().color = new Color32(145, 220, 90, 255);
+        }
+    }
 	void GenerateSoundVals(int code) {
 		float step = (highestVol - lowestVol) / 90;
 		for (int i = 0; i < soundVals.Length; i++) {
