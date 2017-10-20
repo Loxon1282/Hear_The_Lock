@@ -12,27 +12,27 @@ public class GameController : MonoBehaviour {
 
 	void Awake() {
 		levels.Add(new Level(1, 1, 0.05f, 0.7f,60,1));
-		levels.Add(new Level(2, 2, 0.1f, 0.65f,50,2));
-		levels.Add(new Level(3, 2, 0.15f, 0.65f,45,2));
-		levels.Add(new Level(4, 2, 0.16f, 0.65f,40,3));
-		levels.Add(new Level(5, 3, 0.17f, 0.63f,35,3));
-		levels.Add(new Level(6, 3, 0.18f, 0.6f,30,4));
-		levels.Add(new Level(7, 3, 0.19f, 0.57f,25,4));
-		levels.Add(new Level(8, 4, 0.20f, 0.55f,20,4));
-		levels.Add(new Level(9, 4, 0.21f, 0.54f,18,5));
-		levels.Add(new Level(10, 4, 0.22f, 0.5f,16,5));
-		levels.Add(new Level(11, 4, 0.23f, 0.5f,13,5));
-		levels.Add(new Level(12, 4, 0.24f, 0.5f,13,5));
-		levels.Add(new Level(13, 4, 0.25f, 0.5f,13,5));
-		levels.Add(new Level(14, 4, 0.26f, 0.5f,13,5));
-		levels.Add(new Level(15, 4, 0.27f, 0.5f,13,5));
-		levels.Add(new Level(16, 4, 0.13f, 0.5f,13,5));
-		levels.Add(new Level(17, 4, 0.15f, 0.5f,13,5));
-		levels.Add(new Level(18, 4, 0.15f, 0.5f,13,5));
-		levels.Add(new Level(19, 4, 0.15f, 0.5f,13,5));
-		levels.Add(new Level(20, 4, 0.15f, 0.5f,13,5));
-		levels.Add(new Level(21, 4, 0.15f, 0.5f,13,5));
-		levels.Add(new Level(22, 4, 0.15f, 0.5f,13,5));
+		levels.Add(new Level(2, 2, 0.06f, 0.65f,55,2));
+		levels.Add(new Level(3, 2, 0.07f, 0.65f,50,2));
+		levels.Add(new Level(4, 2, 0.08f, 0.65f,45,3));
+		levels.Add(new Level(5, 3, 0.1f, 0.63f,40,3));
+		levels.Add(new Level(6, 3, 0.12f, 0.6f,35,4));
+		levels.Add(new Level(7, 3, 0.14f, 0.57f,30,4));
+		levels.Add(new Level(8, 4, 0.16f, 0.55f,30,4));
+		levels.Add(new Level(9, 4, 0.18f, 0.54f,30,5));
+		levels.Add(new Level(10, 4, 0.20f, 0.5f,26,5));
+		levels.Add(new Level(11, 4, 0.20f, 0.5f,24,5));
+		levels.Add(new Level(12, 4, 0.20f, 0.5f,22,5));
+		levels.Add(new Level(13, 4, 0.20f, 0.5f,20,5));
+		levels.Add(new Level(14, 5, 0.21f, 0.5f,18,5));
+		levels.Add(new Level(15, 5, 0.22f, 0.5f,16,5));
+		levels.Add(new Level(16, 5, 0.23f, 0.5f,15,5));
+		levels.Add(new Level(17, 5, 0.24f, 0.5f,15,6));
+		levels.Add(new Level(18, 5, 0.24f, 0.5f,14,6));
+		levels.Add(new Level(19, 5, 0.24f, 0.5f,13,6));
+		levels.Add(new Level(20, 5, 0.24f, 0.5f,12,6));
+		levels.Add(new Level(21, 5, 0.24f, 0.5f,11,7));
+		levels.Add(new Level(22, 5, 0.24f, 0.5f,10,8));
 		CheckPrefs ();
 		if (SceneManager.GetActiveScene ().name == "levelSelection") {
 			SetUpStars ();

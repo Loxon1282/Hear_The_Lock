@@ -104,7 +104,7 @@ public class GameplayController : MonoBehaviour {
 		if (startingTimer > 0) {
 			startingTimer = startingTimer - Time.fixedDeltaTime;
 			timerText.text = Mathf.Round (startingTimer).ToString ();
-		} else if(gameEnded == false){
+		} else if(gameEnded == false&&restoreScreen.activeSelf==false){
 			if(timer>0)
 				timer = timer - Time.fixedDeltaTime;
 			timerRounded = Mathf.Round (timer * 10f) / 10f;
