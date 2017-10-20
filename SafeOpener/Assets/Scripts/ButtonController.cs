@@ -12,6 +12,30 @@ public class ButtonController : MonoBehaviour {
 	//		panelRight.GetComponent<RectTransform> ().sizeDelta = new Vector2 ( Screen.width /2 , Screen.height/3);
 	//	}
 	}
+	void Update(){
+		if (SceneManager.GetActiveScene ().name == "menu") {
+			if (Input.GetKey (KeyCode.Escape)) {
+				Application.Quit ();
+			}
+
+		} else if (SceneManager.GetActiveScene ().name == "levelSelection") {
+			if (Input.GetKey (KeyCode.Escape)) {
+				SceneManager.LoadScene ("menu");
+			}
+		} else if (SceneManager.GetActiveScene ().name == "levelSelection2") {
+			if (Input.GetKey (KeyCode.Escape)) {
+				SceneManager.LoadScene ("levelSelection");
+			}
+		} else if (SceneManager.GetActiveScene ().buildIndex > 0 && SceneManager.GetActiveScene ().buildIndex < 12) {
+			if (Input.GetKey (KeyCode.Escape)) {
+				SceneManager.LoadScene ("levelSelection");
+			}
+		} else {
+			if (Input.GetKey (KeyCode.Escape)) {
+				SceneManager.LoadScene ("levelSelection2");
+			}
+		}
+	}
 	public void SceneController(string str) {
 		if (str == "exit") {
 			SceneManager.LoadScene ("levelSelection");
@@ -25,7 +49,9 @@ public class ButtonController : MonoBehaviour {
 	public void ReloadLvl() {
 		SceneManager.LoadScene (SceneManager.GetActiveScene().name);
 	}
-
+	public void ExitGame(){
+		Application.Quit ();
+	}
 	public void Link(string link){
 		if(link=="KindOfStudio"){
 		Application.OpenURL ("http://KindOfStudio.pl/");
