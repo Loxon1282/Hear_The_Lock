@@ -39,8 +39,14 @@ public class ButtonController : MonoBehaviour {
 	public void SceneController(string str) {
 		if (str == "exit") {
 			SceneManager.LoadScene ("levelSelection");
+		} else if(str == "levelSelection" || str == "levelSelection2" || str == "menu")
+		{
+			SceneManager.LoadScene(str);
 		} else {
-			SceneManager.LoadScene (str);
+			if(PlayerPrefs.GetInt("canLaunch" + str) == 1)
+			{
+				SceneManager.LoadScene(str);
+			}
 		}
 	}
 	public void LoadNextScene(){
