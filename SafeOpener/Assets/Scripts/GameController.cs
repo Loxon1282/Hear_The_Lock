@@ -34,6 +34,8 @@ public class GameController : MonoBehaviour {
 		levels.Add(new Level(21, 5, 0.24f, 0.5f,11,7));
 		levels.Add(new Level(22, 5, 0.24f, 0.5f,10,8));
 		CheckPrefs ();
+
+		PlayerPrefs.SetInt("canLaunch0", 1);
 		if (SceneManager.GetActiveScene ().name == "levelSelection") {
 			SetUpStars ();
 		}
@@ -46,6 +48,7 @@ public class GameController : MonoBehaviour {
 			if (!PlayerPrefs.HasKey ("stars" + i)) {
 				PlayerPrefs.SetInt ("stars" + i, 0);
 				PlayerPrefs.SetInt ("highScore" + i, 0);
+				PlayerPrefs.SetInt("canLaunch" + i, 0);
 			} 
 			stars [i] = PlayerPrefs.GetInt ("stars" + i);
 			highScores [i] = PlayerPrefs.GetInt ("highScore" + i);

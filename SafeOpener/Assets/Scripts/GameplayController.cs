@@ -178,39 +178,45 @@ public class GameplayController : MonoBehaviour {
 		endingScreen.SetActive (true);
 
 		if (str == "win") {
-			
+
 			if(GameController.highScores[levelName] < points) {
 				PlayerPrefs.SetInt ("highScore" + levelName.ToString(), (int)points);
 			}
 
 			float percents = (points * 100f) / maxScore;
 			Debug.Log (percents);
+			//TO JEST POZMIENIANE///////////////////////////////////////////////////////////
 			int stars = 0;
-			if (percents > 0 && percents < 40) {
+			if (percents > 0 && percents < 20) {
 				stars = 1;
-			} else if (percents >= 40 && percents < 80) {
+			} else if (percents >= 20 && percents < 55) {
 				stars = 2;
-			} else if (percents >= 80) {
+			} else if (percents >= 55) {
 				stars = 3;
 			}
 			if(PlayerPrefs.GetInt("stars" + levelName.ToString()) < stars) {
 				PlayerPrefs.SetInt ("stars" + levelName.ToString (), stars);
 			}
+			//TO JEST POZMIENIANE///////////////////////////////////////////////////////////
+			PlayerPrefs.SetInt("canLaunch" + (levelName + 1).ToString(), 1);
 
 			endingText.text = "POINTS: " + points.ToString ();
 			endingHighScore.text = "HIGH SCORE: " + PlayerPrefs.GetInt("highScore" + levelName);
 		} else {
 			restoreScreen.SetActive (false);
 			endingText.text = "YOU ARE OUT OF TIME!";
-		
+
 		}
-        //Wypelnianie koncowych gwiazdek :3
-        //EMPTY: 145 220 90 74
-        //FULL: 145 220 90 255
-        for (int i = 0; i < (PlayerPrefs.GetInt("stars" + levelName) - 1); i++)
-        {
-            GameObject.Find("Stars").transform.GetChild(i).GetComponent<Image>().color = new Color32(145, 220, 90, 255);
-        }
+		//Wypelnianie koncowych gwiazdek :3
+		//EMPTY: 145 220 90 74
+		//FULL: 145 220 90 255
+
+		//TO JEST POZMIENIANE///////////////////////////////////////////////////////////
+		for (int i = 0; i < PlayerPrefs.GetInt("stars" + levelName); i++)
+		{
+			GameObject.Find("Stars").transform.GetChild(i).GetComponent<Image>().color = new Color32(145, 220, 90, 255);
+		}
+	
     }
 	void GenerateSoundVals(int code) {
 		float step = (highestVol - lowestVol) / 90;
